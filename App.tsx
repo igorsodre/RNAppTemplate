@@ -1,19 +1,27 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { YellowBox } from 'react-native';
+import { enableScreens } from 'react-native-screens';
+import { Provider } from 'react-redux';
+// import firebase from 'firebase';
+import { store } from './src/data';
+import AppNavigator from './src/navigation';
+
+enableScreens();
+
+YellowBox.ignoreWarnings(['Setting a timer']);
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
-  );
-}
+	// if (!firebase.apps.length) {
+	// 	try {
+	// 		firebase.initializeApp(credentials);
+	// 	} catch (err) {
+	// 		console.log(err.message);
+	// 	}
+	// }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	return (
+		<Provider store={store}>
+			<AppNavigator />
+		</Provider>
+	);
+}
